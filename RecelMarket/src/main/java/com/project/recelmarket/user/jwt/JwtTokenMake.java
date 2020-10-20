@@ -4,8 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.xml.bind.DatatypeConverter;
-
-import com.project.recelmarket.user.vo.UserParam;
+import com.project.recelmarket.user.vo.UserVO;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -14,7 +13,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenMake {
 	private static final String secretKey = "aasjjkjaskjdl1k2naskjkdakj34c8sa";
     
-	public static String createToken(UserParam param){
+	public static String createToken(UserVO param){
 	    Calendar cal = Calendar.getInstance();
 	    cal.add(Calendar.DATE,1); //만료일 1일
 

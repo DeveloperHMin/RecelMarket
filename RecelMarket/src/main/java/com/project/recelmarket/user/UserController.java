@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.recelmarket.Const;
 import com.project.recelmarket.ViewRef;
 import com.project.recelmarket.user.email.MailSendService;
+import com.project.recelmarket.user.jwt.JwtToken;
 import com.project.recelmarket.user.vo.UserParam;
 import com.project.recelmarket.user.vo.UserVO;
 
@@ -39,6 +40,9 @@ public class UserController {
 		
 		if(result == Const.SUCCESS) {
 			hs.setAttribute(Const.LOGIN_USER, param);
+			String token = JwtToken.genToken(param);
+			System.out.println(token);
+			hs.setAttribute("token", token);
 			return "redirect:/recel/market";
 		}
 		

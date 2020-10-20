@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.recelmarket.user.UserMapper">
+	<insert id="insUser" parameterType="UserVO">
+		INSERT INTO t_user
+		(user_id, user_pw, salt, nm, nickname, birthday, gender, email,zip_cord,addr)
+		SELECT #{user_id}, #{user_pw}, #{salt}, #{nm}, #{nickname}, #{birthday}, #{gender}, email, #{zip_cord}, #{addr}
+		FROM t_user_auth
+		WHERE email = #{email}
+		and authstatus = 1
+	</insert>
+	
+	<insert id="ins_singUp" parameterType="UserVO">
+		INSERT INTO t_user_auth
+		(email)
+		VALUES
+		(#{email})
+	</insert>
+	<update id="upd_AuthKey" parameterType="UserVO">
+		UPDATE t_user_auth 
+		SET authkey = #{AuthKey} 
+		WHERE email=#{email}
+	</update>
+	<update id="upd_AuthStatus" parameterType="UserVO">
+		UPDATE t_user_auth
+		SET authstatus = 1
+		WHERE email=#{email}
+		and authkey = #{AuthKey}
+	</update>
+	
+	<select id="selUser" parameterType="UserVO" resultType="UserVO">
+		SELECT i_user, user_id, user_pw, salt, nm, profile_img, r_dt,email,nickname
+		FROM t_user
+		WHERE 
+		<if test="i_user > 0"> i_user = #{i_user}</if>
+		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+		<if test="email != null and email != ''"> email = #{email}</if>
+	</select>
+	
+	<select id="selEmail" parameterType="UserParam" resultType="UserParam">
+		SELECT authstatus
+		FROM t_user_auth
+		WHERE email = #{email}
+	</select>
+	
+	<delete id="delEmail" parameterType="UserVO">
+		DELETE FROM t_user_auth
+		WHERE email = #{email}
+	</delete>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.project.recelmarket.user.vo.UserVO" alias="UserVO" />
+		<typeAlias type="com.project.recelmarket.user.vo.UserParam" alias="UserParam" />
+		
+		<typeAlias type="com.project.recelmarket.market.vo.MarketParam" alias="MarketParam" />
+		<typeAlias type="com.project.recelmarket.market.vo.MarketPicVO" alias="MarketPicVO" />
+		<typeAlias type="com.project.recelmarket.market.vo.PagingVO" alias="PagingVO" />
+		
+		<typeAlias type="com.project.recelmarket.common.CodeVO" alias="CodeVO" />		
+	</typeAliases>
+</configuration>

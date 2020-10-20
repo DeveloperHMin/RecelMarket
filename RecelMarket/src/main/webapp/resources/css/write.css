@@ -1,0 +1,88 @@
+@charset "UTF-8";
+#section_wrap{
+	width: 940px;
+	height: 800px;
+	margin: 0 auto;
+}
+#title{
+	width: 100%;
+	height: 50px;
+	margin: 0px auto;
+	margin-top: 45px;
+}
+#title input{
+	width: 99.8%;
+    height: 30px;
+    margin-top: 7px;
+}
+.swiper-container {
+    width:100%;
+    height:370px;
+    border: 1px solid black; 
+}
+.swiper-slide {
+    text-align:center;
+    display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+    align-items:center; /* 위아래 기준 중앙정렬 */
+    justify-content:center; /* 좌우 기준 중앙정렬 */
+}
+.swiper-slide img {
+	box-shadow:0 0 5px #555;
+}
+
+.slide img {
+  width: 25%;
+  height: 370px;
+  float: left;
+}
+main {
+	height: 400px;
+}
+section{
+  border: 1px solid black;
+  border-top: none;
+  width: 100%;
+  height: 330px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+#write{
+    width: 100%;
+}
+
+#write textarea{
+	width: 100%;
+	height: 289px;
+	text-decoration: none;
+	border: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+#pic_up{
+    width: 190px;
+}
+
+#border-bottom{
+    padding: 0px 0px 0px 20px;
+    line-height: 50px;
+    height: 15%;
+    border-bottom: 1px solid black;
+}
+
+#form1{
+	line-height: 45px;
+}
+.item2{
+    float: right;
+    margin-right: 50px;
+}
+#posi_right{
+	margin:15px 0;
+	display: block;
+	height: 100px;
+    float: right;
+}
+
+

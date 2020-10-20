@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.recelmarket.market.MarketMapper">
+	<select id="insWrite" resultType="Integer">
+		insert into
+		t_recel_market(title, i_user, ctnt, cm_category, cd_category, price)
+		values
+		(#{title}, #{i_user}, #{ctnt}, #{cm_category}, #{cd_category},
+		#{price})
+		RETURNING i_recel
+	</select>
+	<insert id="insPic">
+		insert into t_recel_pic(i_recel, seq, recel_pic)
+		select #{i_recel}, ifnull(max(seq),0)+1, #{recel_pic}
+		from t_recel_pic
+		where i_recel = #{i_recel}
+	</insert>
+
+
+	<select id="maininfo" resultType="MarketParam">
+		SELECT A.title,
+		A.i_recel,A.price,A.ctnt, IFNULL (B.recel_pic, '') AS
+		recel_pic, IFNULL
+		(C.nickname, '') AS nickname
+		,IFNULL (D.cd_nm, '') AS
+		cm_nm, IFNULL
+		(E.val, '') AS cd_nm,
+		IFNULL(C.profile_img, ''),
+		IFNULL(C.i_user, '')
+		FROM
+		t_recel_market A
+		LEFT JOIN t_recel_pic B
+		ON
+		A.i_recel = B.i_recel
+		LEFT
+		JOIN t_user C
+		ON A.i_user = C.i_user
+		LEFT JOIN
+		c_code_m D
+		ON
+		A.cm_category = D.i_m
+		LEFT JOIN c_code_d E
+		ON A.cm_category
+		= E.i_m
+		AND A.cd_category = E.cd
+		<if test="i_recel != 0">
+			WHERE A.i_recel = #{i_recel}
+		</if>
+		GROUP
+		BY A.i_recel
+		<if test="record_cnt != 0">
+			LIMIT #{pagingStart},#{record_cnt}
+		</if>
+	</select>
+	<select id="ctnt" resultType="Integer">
+		SELECT COUNT(*) FROM t_recel_market;
+	</select>
+	<select id="selPic" resultType="MarketPicVO">
+		SELECT recel_pic FROM t_recel_pic
+		WHERE i_recel = #{i_recel}
+	</select>
+</mapper>
